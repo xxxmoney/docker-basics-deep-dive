@@ -88,7 +88,7 @@ COPY index.js ./
 
 # For documenting the port, we use `EXPOSE`
 # Importantly, this does basically nothing, it just documents the port that the container will use
-EXPOSE 3000
+EXPOSE 666
 
 
 #
