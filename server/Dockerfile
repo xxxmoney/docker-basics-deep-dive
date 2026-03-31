@@ -33,7 +33,7 @@
 # Base Image (BUILD TIME)
 #
 
-# The first thing to define when defining .dockerfile is base image
+# The first thing to define when defining Dockerfile is base image
 # Essentially, it just means taking some pre-existing image - like with node, and using at as base for our image
 # In our case, we will use `node:18-alpine`
 # Which is a pre-built image with node 18 and alpine linux
