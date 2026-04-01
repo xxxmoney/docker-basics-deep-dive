@@ -16,6 +16,9 @@ docker rm "thoughts-api-01"
 docker run -d --name "thoughts-api-01" -p "8080:666" "thoughts-api"
 :: BTW - there is also an option to include `--rm` parameter, which would remove the container after it stops
 
+:: TODO: Regarding the `-v` volume parameter:
+:: TODO: use volumes, include explanations
+
 :: We can also list running containers (or even stopped)
 :: `docker ps` - lists running containers
 :: `docker ps -a` - lists all containers, including stopped ones
