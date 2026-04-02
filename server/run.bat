@@ -16,8 +16,11 @@ docker rm "thoughts-api-01"
 docker run -d --name "thoughts-api-01" -p "8080:666" "thoughts-api"
 :: BTW - there is also an option to include `--rm` parameter, which would remove the container after it stops
 
-:: TODO: Regarding the `-v` volume parameter:
-:: TODO: use volumes, include explanations
+:: Regarding the `-v` volume parameter:
+:: These are volumes - they are used for persistance of data - even when the container is removed
+:: - anonymous - without names, for temp data - docker handles where it is
+:: - named - basically anonymous with name, docker handles where it is, but we can refer to it by name
+:: - bind mount - binding a local path to a path in a container
 
 :: We can also list running containers (or even stopped)
 :: `docker ps` - lists running containers
