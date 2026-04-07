@@ -80,6 +80,7 @@ RUN npm install
 
 # And now we can copy the project files - in our example, we only have index.js, so that
 COPY index.js ./
+COPY thoughts.js ./
 
 
 #
