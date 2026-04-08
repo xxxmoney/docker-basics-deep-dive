@@ -1,7 +1,7 @@
 ﻿
 import express from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { getThoughts, addThought } from "./thoughts.js";
+import { getThoughts, addThought } from "./src/thoughts.js";
 
 const PORT = process.env.PORT || 666;
 const app = express();

@@ -78,9 +78,9 @@ RUN npm install
 # Project Files Copying (BUILD TIME)
 #
 
-# And now we can copy the project files - in our example, we only have index.js, so that
-COPY index.js ./
-COPY thoughts.js ./
+# And now we can copy the project files
+COPY index.js ./index.js
+COPY src ./src
 
 
 #
