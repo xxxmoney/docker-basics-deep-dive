@@ -4,7 +4,7 @@ import cors from 'cors';
 import { StatusCodes } from 'http-status-codes';
 import { getThoughts, addThought } from "./src/thoughts.js";
 
-const PORT = process.env.PORT || 666;
+const PORT = process.env.PORT;
 const app = express();
 
 app.use(express.json());
@@ -41,5 +41,5 @@ app.post('/thoughts', (request, response) => {
 // TODO: test in docker, add volumes for ./data/thoughts.json, etc
 
 app.listen(PORT, () => {
-  console.log(`I am running hot'n'steady on 'http://localhost:${PORT}'`);
+  console.log(`I am running hot'n'steady on port '${PORT}'`);
 });

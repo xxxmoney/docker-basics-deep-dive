@@ -1,0 +1,36 @@
+﻿
+# Docker compose is basically a single file to define all containers
+# Meaning we don't need to manually run docker files, and scripts,, etc, instead, we can have a single file
+# This single file defines the containers (services), their settings - build (path to docker file), ports, volumes, environment variables dependencies, etc
+# We also define the volumes - on the top level, available to all services
+# Regarding network - all services can talk to each other by default - hostname is defined as the service name
+
+# Name for the whole 'orchestration'
+name: thoughts-app
+
+# Services aka the containers
+services:
+  # Service with name 'server'
+  server:
+    # Where to look for the Dockerfile
+    build: "./server"
+    # Defning ports - local machine port to container port
+    ports:
+      - "8080:666"
+    # Volume definition - uses the top level volume
+    volumes:
+      - "thoughts-data:/app/data"
+    # Environment variables
+    environment:
+      - "PORT=666"
+
+  client:
+    build: "./client"
+    environment:
+      - "API_URL=http://server:666"
+    # Depends on defines how to start the services - so firstly start the server, then the client
+    depends_on:
+      - server
+
+volumes:
+  thoughts-data:
