@@ -14,18 +14,27 @@ services:
   server:
     # Where to look for the Dockerfile
     build: "./server"
+    # Use the dev command instead
+    command: "npm run dev"
     # Defning ports - local machine port to container port
     ports:
       - "8080:666"
     # Volume definition - uses the top level volume
     volumes:
       - "thoughts-data:/app/data"
+      # For dev use - to have live reload of code
+      - "./server/src:/app/src"
     # Environment variables
     environment:
       - "PORT=666"
 
   client:
     build: "./client"
+    # Use the dev command instead
+    command: "npm run dev"
+    volumes:
+      # For dev use - to have live reload of code
+      - "./client/src:/app/src"
     environment:
       - "API_URL=http://server:666"
     # Depends on defines how to start the services - so firstly start the server, then the client

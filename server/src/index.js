@@ -2,7 +2,7 @@
 import express from 'express';
 import cors from 'cors';
 import { StatusCodes } from 'http-status-codes';
-import { getThoughts, addThought } from "./src/thoughts.js";
+import { getThoughts, addThought } from "./thoughts.js";
 
 const PORT = process.env.PORT;
 const app = express();

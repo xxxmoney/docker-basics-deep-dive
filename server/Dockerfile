@@ -78,8 +78,7 @@ RUN npm install
 #
 
 # And now we can copy the project files
-COPY index.js ./index.js
-COPY src ./src
+COPY src/ ./src/
 
 
 #
