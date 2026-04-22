@@ -57,7 +57,6 @@ WORKDIR /app
 # As we now have the base image and the directory set, next we copy the files from our local machine to the container
 # We use `COPY` command for that, and we specify the source and destination
 COPY package.json ./
-COPY package-lock.json ./
 
 # Now, we will not copy all of the files, because of CACHING
 # Because docker builds image in layers

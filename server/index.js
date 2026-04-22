@@ -1,5 +1,6 @@
 ﻿
 import express from 'express';
+import cors from 'cors';
 import { StatusCodes } from 'http-status-codes';
 import { getThoughts, addThought } from "./src/thoughts.js";
 
@@ -7,6 +8,7 @@ const PORT = process.env.PORT || 666;
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.get('/', (request, response) => {
   response
