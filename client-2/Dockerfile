@@ -6,6 +6,8 @@ WORKDIR /app
 COPY Client2.csproj ./
 RUN dotnet restore
 
+# TODO: maybe define different, smaller image to just run the app
+
 COPY Program.cs ./
 
 CMD ["dotnet", "run"]
