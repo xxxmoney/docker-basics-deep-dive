@@ -15,3 +15,4 @@ await new Promise((resolve) => {
   }, appTimeout);
 });
 
+console.log('Finished')

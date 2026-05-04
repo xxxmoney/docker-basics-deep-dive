@@ -41,5 +41,16 @@ services:
     depends_on:
       - server
 
+  client-2:
+    build: "./client-2"
+    command: "dotnet watch run"
+    volumes:
+      - "./client-2/Program.cs:/app/Program.cs"
+    environment:
+      - "API_URL=http://server:666"
+      - "DOTNET_USE_POLLING_FILE_WATCHER=true"
+    depends_on:
+      - server
+
 volumes:
   thoughts-data:

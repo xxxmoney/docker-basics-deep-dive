@@ -1,16 +1,34 @@
-﻿
-// TODO: call the server api
+﻿using System.Net.Http.Json;
+using Newtonsoft.Json;
 
-using System.Globalization;
+var appTimeout = TimeSpan.FromMinutes(5);
+var intervalTimeout = TimeSpan.FromSeconds(2);
 
-Console.WriteLine("Test");
+var url = Environment.GetEnvironmentVariable("API_URL");
+using var client = new HttpClient() { BaseAddress = new Uri(url) };
 
-// var url = Environment.GetEnvironmentVariable("API_URL");
-// using var client = new HttpClient() { BaseAddress = new Uri(url) };
-//
-// async Task<List<string>> GetThoughts() {
-//   var response = await client.GetAsync($"/api/values");
-//
-//
-// }
-//
+async Task<List<string>> GetThoughts() {
+  var response = await client.GetAsync("/thoughts");
+  response.EnsureSuccessStatusCode();
+
+  return await response.Content.ReadFromJsonAsync<List<string>>();
+}
+
+var cancellationTokenSource = new CancellationTokenSource();
+cancellationTokenSource.CancelAfter(appTimeout);
+while (!cancellationTokenSource.Token.IsCancellationRequested) {
+  try
+  {
+    var thoughts = await GetThoughts();
+    Console.WriteLine(JsonConvert.SerializeObject(thoughts));
+  }
+  catch (Exception e)
+  {
+    Console.WriteLine(e);
+  }
+
+  await Task.Delay(intervalTimeout, cancellationTokenSource.Token);
+}
+
+Console.WriteLine("Finished");
+
