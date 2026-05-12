@@ -1,0 +1,19 @@
+{
+  "name": "logger",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon -L src/index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "http-status-codes": "^2.3.0",
+    "cors": "^2.8.6",
+    "nodemon": "^3.1.14"
+  }
+}

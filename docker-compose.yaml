@@ -18,7 +18,7 @@ services:
     command: "npm run dev"
     # Defning ports - local machine port to container port
     ports:
-      - "8080:666"
+      - "666:666"
     # Volume definition - uses the top level volume
     volumes:
       - "thoughts-data:/app/data"
@@ -27,6 +27,8 @@ services:
     # Environment variables
     environment:
       - "PORT=666"
+    depends_on:
+      - logger
 
   client:
     build: "./client"
@@ -40,6 +42,7 @@ services:
     # Depends on defines how to start the services - so firstly start the server, then the client
     depends_on:
       - server
+      - logger
 
   client-2:
     build: "./client-2"
@@ -51,6 +54,19 @@ services:
       - "DOTNET_USE_POLLING_FILE_WATCHER=true"
     depends_on:
       - server
+      - logger
+
+  logger:
+    build: "./logger"
+    command: "npm run dev"
+    ports:
+      - "667:667"
+    volumes:
+      - "logger-data:/app/data"
+      - "./logger/src:/app/src"
+    environment:
+      - "PORT=667"
 
 volumes:
   thoughts-data:
+  logger-data:
