@@ -12,6 +12,6 @@ const db = await JSONFilePreset(filePath, { logs: [] })
 export async function log(message, level, app) {
   console.log(`Saving log: [${level}] '${message}' (app: ${app})`);
 
-  db.data.logs.push({ message, level, app });
+  db.data.logs.push({ message, level, app, date: new Date().toISOString() });
   await db.write();
 }

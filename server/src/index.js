@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import { StatusCodes } from 'http-status-codes';
 import { getThoughts, addThought } from "./thoughts.js";
+import { log } from "./logger.js";
 
 const PORT = process.env.PORT;
 const app = express();
@@ -16,14 +17,18 @@ app.get('/', (request, response) => {
     .send('Staying alive, staying alive ah, ah-AH');
 });
 
-app.get('/thoughts', (request, response) => {
+app.get('/thoughts', async (request, response) => {
+  await log('Get thoughts request received');
+
   response
     .status(StatusCodes.OK)
     .json(getThoughts());
 });
 
-app.post('/thoughts', (request, response) => {
-  const {thought} = request.body;
+app.post('/thoughts', async (request, response) => {
+  const { thought } = request.body;
+
+  await log(`Post thought request received: '${thought}'`);
 
   if (!thought) {
     return response
@@ -37,8 +42,6 @@ app.post('/thoughts', (request, response) => {
     .status(StatusCodes.CREATED)
     .json({message: 'Thought added successfully'});
 });
-
-// TODO: test in docker, add volumes for ./data/thoughts.json, etc
 
 app.listen(PORT, () => {
   console.log(`I am running hot'n'steady on port '${PORT}'`);

@@ -1,4 +1,4 @@
-﻿import {getThoughts} from "./api.js";
+﻿import { getThoughts } from "./api.js";
 
 const appTimeout = 5 * 60 * 1000; // 5 minutes
 const intervalTimeout = 2 * 1000; // 2 seconds
