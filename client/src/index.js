@@ -1,5 +1,7 @@
 ﻿import { getThoughts } from "./api.js";
 
+// TODO: add logger service calling
+
 const appTimeout = 5 * 60 * 1000; // 5 minutes
 const intervalTimeout = 2 * 1000; // 2 seconds
 

@@ -1,6 +1,8 @@
 ﻿using System.Net.Http.Json;
 using Newtonsoft.Json;
 
+// TODO: add logger service calling
+
 var appTimeout = TimeSpan.FromMinutes(5);
 var intervalTimeout = TimeSpan.FromSeconds(2);
 
