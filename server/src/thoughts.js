@@ -3,8 +3,8 @@ import path from 'path';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const directoryPath = path.join(__dirname, '../data');
+const root = dirname(fileURLToPath(import.meta.url));
+const directoryPath = path.join(root, '../data');
 const filePath = path.join(directoryPath, 'data.json');
 
 function checkFile() {

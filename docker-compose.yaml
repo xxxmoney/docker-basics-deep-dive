@@ -27,6 +27,7 @@ services:
     # Environment variables
     environment:
       - "PORT=666"
+      - "LOGGER_URL=http://logger:667"
     depends_on:
       - logger
 
@@ -39,6 +40,7 @@ services:
       - "./client/src:/app/src"
     environment:
       - "API_URL=http://server:666"
+      - "LOGGER_URL=http://logger:667"
     # Depends on defines how to start the services - so firstly start the server, then the client
     depends_on:
       - server
@@ -52,6 +54,7 @@ services:
     environment:
       - "API_URL=http://server:666"
       - "DOTNET_USE_POLLING_FILE_WATCHER=true"
+      - "LOGGER_URL=http://logger:667"
     depends_on:
       - server
       - logger

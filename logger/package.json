@@ -11,9 +11,10 @@
     "dev": "nodemon -L src/index.js"
   },
   "dependencies": {
-    "express": "^5.2.1",
-    "http-status-codes": "^2.3.0",
-    "cors": "^2.8.6",
-    "nodemon": "^3.1.14"
+    "express": "~5.2.1",
+    "http-status-codes": "~2.3.0",
+    "cors": "~2.8.6",
+    "nodemon": "~3.1.14",
+    "lowdb": "~7.0.1"
   }
 }
