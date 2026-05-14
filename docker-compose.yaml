@@ -28,13 +28,17 @@ services:
     environment:
       - "PORT=666"
       - "LOGGER_URL=http://logger:667"
+    # Healthcheck - checking when the service is up and running - for this need to have downloaded curl in the container - Dockerfile
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:666/" ]
+      test: [ "CMD", "curl", "-f", "http://localhost:666/" ] # Call self
       interval: 1s
       timeout: 2s
       retries: 5
+    # Start only after other services
     depends_on:
+      # For example the logger service
       logger:
+        # Wait for the healthcheck of the logger service
         condition: service_healthy
 
   client:
@@ -67,7 +71,7 @@ services:
       server:
         condition: service_healthy
       logger:
-          condition: service_healthy
+        condition: service_healthy
 
   logger:
     build: "./logger"
