@@ -28,8 +28,14 @@ services:
     environment:
       - "PORT=666"
       - "LOGGER_URL=http://logger:667"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:666/" ]
+      interval: 1s
+      timeout: 2s
+      retries: 5
     depends_on:
-      - logger
+      logger:
+        condition: service_healthy
 
   client:
     build: "./client"
@@ -43,21 +49,25 @@ services:
       - "LOGGER_URL=http://logger:667"
     # Depends on defines how to start the services - so firstly start the server, then the client
     depends_on:
-      - server
-      - logger
+      server:
+        condition: service_healthy
+      logger:
+        condition: service_healthy
 
   client-2:
     build: "./client-2"
     command: "dotnet watch run"
     volumes:
-      - "./client-2/Program.cs:/app/Program.cs"
+      - "./client-2/src:/app/src"
     environment:
       - "API_URL=http://server:666"
       - "DOTNET_USE_POLLING_FILE_WATCHER=true"
       - "LOGGER_URL=http://logger:667"
     depends_on:
-      - server
-      - logger
+      server:
+        condition: service_healthy
+      logger:
+          condition: service_healthy
 
   logger:
     build: "./logger"
@@ -69,6 +79,11 @@ services:
       - "./logger/src:/app/src"
     environment:
       - "PORT=667"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:667/" ]
+      interval: 1s
+      timeout: 2s
+      retries: 5
 
 volumes:
   thoughts-data:

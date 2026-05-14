@@ -43,6 +43,6 @@ app.post('/thoughts', async (request, response) => {
     .json({message: 'Thought added successfully'});
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`I am running hot'n'steady on port '${PORT}'`);
 });

@@ -25,7 +25,7 @@ app.post('/log', async (request, response) => {
     .send('OK');
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`I am running hot'n'steady on port '${PORT}'`);
 });
 

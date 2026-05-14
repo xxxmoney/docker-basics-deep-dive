@@ -39,6 +39,14 @@
 # Which is a pre-built image with node 18 and alpine linux
 FROM node:18-alpine
 
+#
+# Additional Packages (BUILD TIME)
+#
+
+# Later for usages with healthchecking etc we will need to have curl
+# Because the node alpine is lightweight, it does not have curl pre-installed, so we need to add it
+RUN apk add --no-cache curl
+
 
 #
 # Working Directory (BUILD TIME)
